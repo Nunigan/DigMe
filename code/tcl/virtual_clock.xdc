@@ -1,0 +1,1 @@
+create_clock -name virtclk -period 10 -waveform {2.5 5}

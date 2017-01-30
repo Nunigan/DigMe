@@ -1,0 +1,1 @@
+create_clock -name devclk -period 10 -waveform {2.5 5} [get_ports clkin]
