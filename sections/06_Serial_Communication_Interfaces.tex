@@ -48,13 +48,13 @@ Die Hardware für eine SPI Schnittstelle kann mittels zwei Schieberegistern (ein
 \end{multicols}
 
 \subsubsection{Implementierung in VHDL}
-\lstinputlisting[language=VHDL]{code/spiMaster.vhd}
+\lstinputlisting[language=VHDL, style=VHDL]{code/spiMaster.vhd}
 
 \subsection{I\textsuperscript{2}C (Inter-Integrated-Circuit)}
 Das I\textsuperscript{2}C Interface ist ein bidirektionales Bussystem. Es können beliebig viele Master und Slaves angehängt werden. Die folgenden Signale werden für die I\textsuperscript{2}C Schnittstelle benötigt:
 \begin{compactitem}
     \item \textbf{SCL}: Taktsignal
-    \item \textbf{SDA}: Bidirektionales Datensignal   
+    \item \textbf{SDA}: Bidirektionales Datensignal
 \end{compactitem}
 
 \subsubsection{Übertragungsgeschwindigkeiten}
@@ -91,14 +91,14 @@ Der letzte Teilnehmer, welcher die SDA Leitung auf Low ziehen kann, gewinnt die 
     \begin{figure}[H]
         \includegraphics[width=0.5\textwidth]{images/i2c_protocol1.png}
     \end{figure}
-    
+
     \paragraph{Lesen vom Slave}
     \begin{figure}[H]
         \includegraphics[width=0.5\textwidth]{images/i2c_protocol2.png}
     \end{figure}
-    
+
     \ \\ \ \\
-    
+
     \subsubsection{Hardwaremässige Implementierung}
     Damit keine Kurzschlüsse entstehen, wenn zwei Master gleichzeitig senden wollen, werden die beiden Signale über externe Pull-Up-Widerstände auf einen High Pegel gezogen.
     \begin{figure}[H]
@@ -108,7 +108,7 @@ Der letzte Teilnehmer, welcher die SDA Leitung auf Low ziehen kann, gewinnt die 
 
 \subsubsection{Implementierung in VHDL}
 Da die beiden I\textsuperscript{2}C-Signale bidirektional sind, muss in VHDL ein IO-Buffer für die beiden Signale instantiiert werden. Der nachfolgende Code instantiiert zwei solche Buffer.
-\lstinputlisting[language=VHDL]{code/i2cMaster.vhd}
+\lstinputlisting[language=VHDL, style=VHDL]{code/i2cMaster.vhd}
 
 \subsection{UART (Universal Asynchronous Receiver Transmitter)}
 UART ist eine Punkt-zu-Punkt Schnitstelle. Es wird pro Richtung ein Datensignal benötigt.
@@ -130,11 +130,11 @@ LVDS definiert kein Übertragungsprotokoll sondern eine Übertragungsart.
      \begin{figure}[H]
         \includegraphics[width=0.5\textwidth]{images/lvds.png}
     \end{figure}
-    
+
     \subsubsection{Prinzip}
-    Die Signale werden anstelle mit einer Spannungsänderung mit einer Stromänderung übertragen. Das Signal schwingt somit nur um eine Spannung von $\pm$350mV.   
-    
+    Die Signale werden anstelle mit einer Spannungsänderung mit einer Stromänderung übertragen. Das Signal schwingt somit nur um eine Spannung von $\pm$350mV.
+
     \subsubsection{Implementierung in VHDL}
     In VHDL kann LVDS nicht direkt synthetisiert werden. Der FPGA hat jedoch dennoch Pads, welche LVDS unterstützen. Diese müssen jedoch mithilfe von Constraints zugewiesen werden.
-    \lstinputlisting[language=tcl]{code/tcl/lvds.xdc}
+    \lstinputlisting[language=tcl, style=tcl]{code/tcl/lvds.xdc}
 \end{multicols}

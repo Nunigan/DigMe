@@ -6,7 +6,7 @@ Mit dem SDK von Xilinx kann der ARM Prozessor auf dem Zynq programmiert werden. 
 
 \subsubsection{Benutzen der AXI Schnittstelle}
 Im Beispielprojekt wird eine Datei \textit{xparameters.h} erstellt. Diese enthält Definitionen über die vorhandenen AXI-Schnittstellen, wie zum Beispiel der Adressbereich. In der Datei \textit{xil\_io.h} sind Funktionen enthalten um Register über AXI zu lesen und zu schreiben. Das SDK erstellt zudem in der Datei \textit{AXILite.h} oder \textit{AXI.h} spezialisierte Funktionen, welche passend auf die über AXI angeschlossenen Komponenten zugeschnitten sind (es wird deshalb empfohlen die Funktionen aus diesen Dateien zu benutzen).
-\lstinputlisting[language=C]{code/c/sdk_axi.c}
+\lstinputlisting[language=C, style=C]{code/c/sdk_axi.c}
 
 \subsubsection{AXI Direct Memory Access (DMA)}
 Im IP Katalog von Xilinx gibt es einen AXI DMA IP Core. Dieser stellt zwei AXI4-Stream-Schnittstellen für eine hohe Bandbreite zur Verfügung. Eine Schnittstelle dient der Datenübertragung vom Master zum Slave, die andere für die gegengesetzte Richtung.
@@ -29,7 +29,7 @@ Die folgenden Modi stellt der DMA IP Block zur Verfügung:
 Der Zynq stellt im PS einen eingenen DMA Controller zur Verfügung. Bis zu acht Streams können von diesem Block gemanaged werden. Das SDK stellt in der Datei \textit{xdmaps.h} verschiedene Funktionen zur Anstuerung des DMA Controllers zur Verfügung.
 
 \paragraph{DMA Schreibtransfer}
-\lstinputlisting[language=C]{code/c/sdk_dmawrite.c}
+\lstinputlisting[language=C, style=C]{code/c/sdk_dmawrite.c}
 
 \paragraph{DMA Lesetransfer}
-\lstinputlisting[language=C]{code/c/sdk_dmaread.c}
+\lstinputlisting[language=C, style=C]{code/c/sdk_dmaread.c}

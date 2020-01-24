@@ -1,7 +1,7 @@
 \section{Constraints}
 \subsection{``.xdc''-Dateien}
 Physikalische Eigenschaften eines Designs können dem Synthese- und Implementierungstool mit Constraints mitgeteilt werden. Diese Constraints werden bei Vivado in ``.xdc''-Dateien definiert. Sind mehrere Dateien vorhanden, so werden diese sequentiell angewendet. Wird ein Constraints mehrfach gesetzt, so wird der zuletzt gesetzte Constraint verwendet. Für jede ``.xdc''-Datei kann desweiteren definiert werden, ob sie nur in der Synthese oder nur der Implementation angewendet werden soll (oder bei beidem).
-\lstinputlisting[language=tcl]{code/tcl/xdc_property_used_in.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/xdc_property_used_in.xdc}
 
 \subsubsection{Reihenfolge}
 Es wird empfohlen die Constraints in der nachfolgenden Reihenfolge in den Dateien abzulegen, um Fehler zu minimieren.
@@ -49,11 +49,11 @@ Um Constraints bestimmen zu können, muss als erstes eine Timing Analyse durchge
     \subsubsection{Input Delay}
     Das Input Delay kann mit der nachfolgenden Formel bestimmt werden, weiterführende Informationen sind in Kapitel \ref{chapter:input_delay} zu finden. \\
     $t_{\text{input\_delay}}=t_{\text{clk\_ext}}+t_{\text{pcq\_FF1}}+t_{\text{db}}-t_{\text{cb}}$
-    
+
     \subsubsection{Output Delay}
     Das Output Delay kann mit der nachfolgenden Formel bestimmt werden, weiterführende Informationen sind in Kapitel \ref{chapter:output_delay} zu finden. \\
     $t_{\text{output\_delay}}=t_{\text{pcq\_FF3}}+t_{\text{p\_comb}}+t_{\text{clk\_latency(FF3-master)}}$
-\end{multicols} 
+\end{multicols}
 
 \begin{multicols}{2}
     \subsubsection{Clock Skew}
@@ -85,7 +85,7 @@ Clocks müssen definiert werden, damit die Timing Paths berechnet werden können
 \subsubsection{Primary Clocks}
 Ein Primary Clock ist ein Clock, welcher in der Regel durch einen Eingangspin zugeführt wird. Ein solcher Clock muss immer einem Netzlistenobjekt zugewiesen werden. \\
 Der nachfolgende Befehl definiert einen neuen Clock mit dem Namen \textit{devclk}, einer Periode von 10ns sowie einem Dutycycle von 25\%. Der Clock wird über den Port \textit{clkin} zugeführt.
-\lstinputlisting[language=tcl]{code/tcl/primary_clock.xdc} 
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/primary_clock.xdc}
 
 \subsubsection{Generated Clocks}
 Generated Clock werden von speziellen Blöcken in einem FPGA generiert (z.B. MMCM). Sie können auch von Userlogik erzeugt werden. Diese Generated Clocks sind jedoch an einen anderen Clock gebunden und teilen diesen z.B. herunter, oder bewirken eine Phasenverschiebung.
@@ -93,7 +93,7 @@ Generated Clock werden von speziellen Blöcken in einem FPGA generiert (z.B. MMC
 \subsubsection{Virtual Clocks}
 Ein Virtual Clock ist ein Clock welcher physikalisch nicht existiert und somit nicht an ein Netzlisten Objekt gebunden ist. Sie werden benutzt um Input und Output Delays zu spezifizieren, wenn das externe Gerät mit einem anderen Clock läuft als der FPGA. \\
 Der nachfolgende Befehl definiert einen neuen Virtual Clock mit dem Namen \textit{virtclk}, einer Periode von 10ns sowie einem Dutycycle von 25\%.
-\lstinputlisting[language=tcl]{code/tcl/virtual_clock.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/virtual_clock.xdc}
 
 \subsubsection{Clock Latency}
 \begin{minipage}{0.5\textwidth}
@@ -111,7 +111,7 @@ Der nachfolgende Befehl definiert einen neuen Virtual Clock mit dem Namen \texti
 \end{minipage}
 
 Mit den nachfolgenden Befehlen können die Latenzen definiert werden. Wird nichts spezifisch angegeben, so werden der  \textit{min}, \textit{max}, \textit{rise} und \textit{fall} Wert gesetzt.
-\lstinputlisting[language=tcl]{code/tcl/clock_latency.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/clock_latency.xdc}
 
 \subsubsection{Clock Jitter}
 \begin{minipage}{0.3\textwidth}
@@ -126,23 +126,23 @@ Mit den nachfolgenden Befehlen können die Latenzen definiert werden. Wird nicht
 
 \paragraph{Input Jitter}
 Input Jitter definiert Jitter auf Primary Clocks. Mit dem nachfolgenden Befehl kann der Jitter definiert werden:
-\lstinputlisting[language=tcl]{code/tcl/input_jitter.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/input_jitter.xdc}
 
 \paragraph{System Jitter}
 Der System Jitter spezifiert den Jitter für alle Clocks im System (auch für die Primary Clocks). Er wird benutzt um starkes Rauschen zu modellieren. Mit dem nachfolgenden Befehl kann der Jitter definiert werden:
-\lstinputlisting[language=tcl]{code/tcl/system_jitter.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/system_jitter.xdc}
 
 \begin{multicols}{2}
     \subsubsection{Zusätzliche Clock Unsicherheit}
     Sind weitere Unsicherheiten zwischen verschiedenen Clocks vorhanden, so kann mit dem nachfolgenden Befehl definiert werden, wie sich verschiedene Clocks zueinander verhalten.
-    \lstinputlisting[language=tcl]{code/tcl/clock_uncertainty.xdc}
+    \lstinputlisting[language=tcl, style=tcl]{code/tcl/clock_uncertainty.xdc}
     \begin{figure}[H]
         \includegraphics[width=0.5\textwidth]{images/clock_uncertainty.png}
     \end{figure}
 \end{multicols}
 
 \subsection{I/O Pin Constraints}
-\lstinputlisting[language=tcl]{code/tcl/io_pin_constraints.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/io_pin_constraints.xdc}
 
 \subsection{I/O Delay}
 Damit externe Timing Anforderungen korrekt in die Synthese und Implementation einbezogen werden können, ist es notwendig diese anzugeben.
@@ -164,7 +164,7 @@ Mit dem Befehl \texttt{set\_input\_delay} kann das Input Delay angegeben werden.
 \begin{figure}[H]
     \includegraphics[width=0.5\textwidth]{images/input_delay.png}
 \end{figure}
-\lstinputlisting[language=tcl]{code/tcl/input_delay.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/input_delay.xdc}
 
 \subsubsection{Output Delay} \label{chapter:output_delay}
 Output Delays geben an, in welchem Zeitbereich die Daten am Ausgangsport stabil sein müssen. Dieser Zeitbereich wird wiederum relativ zu einem Clock angegeben.
@@ -183,4 +183,4 @@ Mit dem Befehl \texttt{set\_ourput\_delay} kann das Output Delay angegeben werde
 \begin{figure}[H]
     \includegraphics[width=0.5\textwidth]{images/output_delay.png}
 \end{figure}
-\lstinputlisting[language=tcl]{code/tcl/output_delay.xdc}
+\lstinputlisting[language=tcl, style=tcl]{code/tcl/output_delay.xdc}
